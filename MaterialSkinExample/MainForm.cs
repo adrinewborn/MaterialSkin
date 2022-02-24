@@ -141,6 +141,11 @@ namespace MaterialSkinExample
             DrawerUseColors = materialSwitch4.Checked;
         }
 
+        private void materialSwitch17_CheckedChanged(object sender, EventArgs e)
+        {
+            DrawerUsePreprocessIcons = materialSwitch17.Checked; 
+        }
+
         private void MaterialSwitch5_CheckedChanged(object sender, EventArgs e)
         {
             DrawerHighlightWithAccent = materialSwitch5.Checked;
@@ -287,7 +292,6 @@ namespace MaterialSkinExample
         {
             materialTextBox21.ShowAssistiveText = materialSwitch16.Checked;
         }
-
 
 
     }

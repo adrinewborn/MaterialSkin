@@ -80,6 +80,23 @@
         }
 
         [Category("Drawer")]
+        private bool _usePreprocessIcons;
+
+        public bool UsePreProcessIcons
+        {
+            get
+            {
+                return _usePreprocessIcons;
+            }
+            set
+            {
+                _usePreprocessIcons = value;
+                preProcessIcons();
+                Invalidate();
+            }
+        }
+
+        [Category("Drawer")]
         private bool _highlightWithAccent;
 
         public bool HighlightWithAccent
@@ -214,8 +231,31 @@
                     new float[] {   0,   0,   0,   1,  0}, // alpha scale factor
                     new float[] {   r,   g,   b,   0,  1}};// offset
 
-            ColorMatrix colorMatrixGray = new ColorMatrix(matrixGray);
-            ColorMatrix colorMatrixColor = new ColorMatrix(matrixColor);
+
+            // Create matrices
+            float[][] matrixStandard = {
+                    new float[] {   1,   0,   0,   0,  0}, // Red scale factor
+                    new float[] {   0,   1,   0,   0,  0}, // Green scale factor
+                    new float[] {   0,   0,   1,   0,  0}, // Blue scale factor
+                    new float[] {   0,   0,   0,   1,  0}, // alpha scale factor
+                    new float[] {   0,   0,   0,   0,  0}};// offset
+
+
+
+            ColorMatrix colorMatrixGray = new ColorMatrix();
+            ColorMatrix colorMatrixColor = new ColorMatrix();
+
+            if (UsePreProcessIcons)
+            {
+                colorMatrixGray = new ColorMatrix(matrixGray);
+                colorMatrixColor = new ColorMatrix(matrixColor);
+            }
+            else
+            {
+                colorMatrixGray = new ColorMatrix(matrixStandard);
+                colorMatrixColor = new ColorMatrix(matrixStandard);
+            }
+
 
             ImageAttributes grayImageAttributes = new ImageAttributes();
             ImageAttributes colorImageAttributes = new ImageAttributes();

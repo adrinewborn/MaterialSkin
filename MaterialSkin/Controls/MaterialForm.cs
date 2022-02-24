@@ -112,6 +112,24 @@ namespace MaterialSkin.Controls
             }
         }
 
+
+        [Category("Drawer")]
+        public bool DrawerUsePreprocessIcons 
+        { 
+            get => _drawerUsePreprocessIcons;
+            set
+            {
+                if (_drawerUsePreprocessIcons == value) return;
+
+                _drawerUsePreprocessIcons = value;
+
+                if (drawerControl == null) return;
+
+                drawerControl.UsePreProcessIcons = value;
+                drawerControl.Refresh();
+            } 
+        }
+
         [Category("Drawer")]
         public bool DrawerHighlightWithAccent
         {
@@ -402,6 +420,7 @@ namespace MaterialSkin.Controls
         private bool _drawerAutoShow;
         private bool _drawerIsOpen;
         private bool _drawerUseColors;
+        private bool _drawerUsePreprocessIcons;
         private bool _drawerHighlightWithAccent;
         private bool _backgroundWithAccent;
         private MaterialDrawer drawerControl = new MaterialDrawer();
