@@ -441,6 +441,7 @@ namespace MaterialSkin.Controls
             DrawerIndicatorWidth = 0;
             DrawerHighlightWithAccent = true;
             DrawerBackgroundWithAccent = false;
+            DrawerUsePreprocessIcons = true;
 
             FormBorderStyle = FormBorderStyle.None;
             Sizable = true;
